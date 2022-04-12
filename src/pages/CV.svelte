@@ -8,14 +8,14 @@
     </div>
     <div class="cv-name">
       <div class="cv-name-full">Esteban Sotillo</div>
-      <div class="cv-name-title">DevOps / Software developer</div>
+      <div class="cv-name-title">DevOps Engineer /<br/>Software Developer</div>
     </div>
     <div class="cv-personal-info">
       <div class="cv-personal-info-item">
-        <div class="cv-personal-info-text">Suisse, 24 ans</div>
+        <div class="cv-personal-info-text">Swiss, 25 y.o</div>
       </div>
       <div class="cv-personal-info-item">
-        <div class="cv-personal-info-text">Célibataire</div>
+        <div class="cv-personal-info-text">Single</div>
       </div>
       <div class="cv-personal-info-item">
         <div class="cv-personal-info-text">
@@ -46,30 +46,37 @@
         </div>
         <div class="cv-card-content">
           <div class="cv-card-element">
-            <div class="cv-card-element-before">11.2018 - now</div>
+            <div class="cv-card-element-before">7 mon.</div>
+            <div class="cv-card-element-title">DevOps Engineer</div>
+            <div class="cv-card-element-brand">Nexthink SA, Lausanne</div>
+            <div class="cv-card-element-date">10.2021 - 05.2022</div>
+            <div class="cv-card-element-content">
+              <ul>
+                <li>Support on the whole jenkins / EKS infrastructure</li>
+                <li>Improving current EKS infrastructure for S3 buckets</li>
+                <li>Planning migration from Bitbucket / Jenkins to Gitlab</li>
+              </ul>
+            </div>
+          </div>
+          <div class="cv-card-element">
+            <div class="cv-card-element-before">3 years</div>
             <div class="cv-card-element-title">
               Software developer / DevOps Jr
             </div>
             <div class="cv-card-element-brand">Olympe.ch, EPFL</div>
+            <div class="cv-card-element-date">11.2018 - 10.2021</div>
             <div class="cv-card-element-content">
               <ul>
-                <li>Setup of EKS using Terraform</li>
+                <li>Management of EKS using Terraform</li>
                 <li>
                   Setup of CI/CD using gitops practices(Gitlab / terraform /
-                  ansible)
+                  Ansible)
                 </li>
                 <li>
-                  Setup of automated release and deployment process (bash /
-                  buildpacks)
-                </li>
-                <li>
-                  Communication with third parties for on premise deployment
+                  Setup of automated release and deployment process
                 </li>
                 <li>Creation of benchmarking tools for our app (JS)</li>
-                <li>Maintain local IT (Radius, Synology)</li>
                 <li>Setup of automated monitoring (Prometheus, Grafana)</li>
-                <li>Backend app dev (Vert.x / Neo4j)</li>
-                <li>General support for devs</li>
               </ul>
             </div>
           </div>
@@ -137,7 +144,7 @@
                 <li>General computer science apprenticeship (Dual)</li>
                 <li>Managing the whole IT of local SMEs</li>
                 <li>
-                  Creation of a web app that generates time-laps "on the fly"
+                  Creation of a web app that generates timelapse (JS)
                 </li>
               </ul>
             </div>
@@ -162,8 +169,8 @@
               <ul>
                 <li>Gitlab-ci</li>
                 <li>Terraform</li>
-                <li>K8s / EKS</li>
-                <li>Helm</li>
+                <li>K8s / EKS / Helm</li>
+                <li>Prometheus / Grafana</li>
                 <li>Ansible</li>
               </ul>
             </div>
@@ -172,8 +179,8 @@
             <div class="cv-card-element-before">Dev stack</div>
             <div class="cv-card-element-content">
               <ul>
-                <li>ESNext / TS</li>
-                <li>Nodejs</li>
+                <li>Nodejs / TS</li>
+                <li>Bash </li>
                 <li>~ Rust</li>
                 <li>~ Java</li>
               </ul>
@@ -462,6 +469,9 @@
   .cv-citation-author {
     text-align: right;
     padding-right: 60px;
+    font-size: small;
+  }
+  a {
     font-size: small;
   }
 </style>
