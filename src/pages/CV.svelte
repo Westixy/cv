@@ -19,7 +19,7 @@
       </div>
       <div class="cv-personal-info-item">
         <div class="cv-personal-info-text">
-          Qrt du Progres 22<br />1450 Ste-Croix
+          Qrt du Progres 22<br />CH - 1450 Ste-Croix 
         </div>
       </div>
       <div class="cv-personal-info-item">
@@ -370,6 +370,7 @@
 
   .cv-personal-info {
     padding-right: 10px;
+    width: 205px;
   }
 
   .cv-name-full {
