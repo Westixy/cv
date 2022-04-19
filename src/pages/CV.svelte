@@ -53,7 +53,7 @@
             <div class="cv-card-element-content">
               <ul>
                 <li>Support on the whole jenkins / EKS infrastructure</li>
-                <li>Improving current EKS infrastructure for S3 buckets</li>
+                <li>Improving current EKS infrastructure (~1K nodes)</li>
                 <li>Planning migration from Bitbucket / Jenkins to Gitlab</li>
               </ul>
             </div>
