@@ -1,7 +1,5 @@
 <div class="cv-cnt">
-  <!--
 		<div class="cv-konami">((a,ks='38384040373937396665',e=document.body,k=0)=>e.addEventListener('keydown',ke=>+ks.slice(k*2,k*2+2)===ke.keyCode?++k>=ks.length/2?a(e,k=0):null:k=0))(x=>x.style.fontFamily='monospace')</div>
-	-->
   <div class="cv-header">
     <div class="cv-pic">
       <img src="pp.jpeg" alt="personal picture" />
@@ -297,12 +295,13 @@
   .cv-konami {
     position: absolute;
     width: 98vw;
-    left: 0;
-    top: 0;
+    left: 7px;
+    top: 7px;
     font-size: 69px;
     overflow: hidden;
     word-break: break-all;
-    opacity: 0.01;
+    opacity: 0.03;
+    filter: blur(4px);
     font-family: monospace;
   }
   .cv-card {
