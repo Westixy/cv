@@ -1,5 +1,5 @@
 <div class="cv-cnt">
-		<div class="cv-konami">((a,ks='38384040373937396665',e=document.body,k=0)=>e.addEventListener('keydown',ke=>+ks.slice(k*2,k*2+2)===ke.keyCode?++k>=ks.length/2?a(e,k=0):null:k=0))(x=>x.style.fontFamily='monospace')</div>
+  <div style="display:none" class="cv-konami">((a,ks='38384040373937396665',e=document.body,k=0)=>e.addEventListener('keydown',ke=>+ks.slice(k*2,k*2+2)===ke.keyCode?++k>=ks.length/2?a(e,k=0):null:k=0))(x=>x.style.fontFamily='monospace')</div>
   <div class="cv-header">
     <div class="cv-pic">
       <img src="pp.jpeg" alt="personal picture" />
@@ -10,7 +10,7 @@
     </div>
     <div class="cv-personal-info">
       <div class="cv-personal-info-item">
-        <div class="cv-personal-info-text">Swiss, 25 y.o</div>
+        <div class="cv-personal-info-text">Swiss, 26 y.o</div>
       </div>
       <div class="cv-personal-info-item">
         <div class="cv-personal-info-text">Single</div>
@@ -21,7 +21,7 @@
         </div>
       </div>
       <div class="cv-personal-info-item">
-        <div class="cv-personal-info-text">079 328 68 69</div>
+        <div class="cv-personal-info-text">+41 79 328 68 69</div> 
       </div>
       <div class="cv-personal-info-item">
         <div class="cv-personal-info-text">esteban@sotil.io</div>
@@ -43,6 +43,19 @@
           <div class="cv-card-title">Experiences</div>
         </div>
         <div class="cv-card-content">
+          <div class="cv-card-element">
+            <div class="cv-card-element-before"> + 10 mon.</div>
+            <div class="cv-card-element-title">Senior Engineer / Cloud (DevOps)</div>
+            <div class="cv-card-element-brand">ELCA Cloud Services / Secutix</div>
+            <div class="cv-card-element-date">06.2022 - now</div>
+            <div class="cv-card-element-content">
+              <ul>
+                <li>Created EKS cluster to manage Infra tools (H.Vault + Prometheus/Grafana)</li>
+                <li>Refactoring of current terraform code (AWS+OCI)</li>
+                <li>Support when fire happens on the infra (SEV1 issues)</li>
+              </ul>
+            </div>
+          </div>
           <div class="cv-card-element">
             <div class="cv-card-element-before">7 mon.</div>
             <div class="cv-card-element-title">DevOps Engineer</div>
@@ -67,7 +80,7 @@
               <ul>
                 <li>Management of EKS using Terraform</li>
                 <li>
-                  Setup of CI/CD using gitops practices(Gitlab / terraform /
+                  Setup of CI/CD using gitops practices (Gitlab / terraform /
                   Ansible)
                 </li>
                 <li>
@@ -165,11 +178,12 @@
             <div class="cv-card-element-before">DevOps</div>
             <div class="cv-card-element-content">
               <ul>
-                <li>Gitlab-ci</li>
-                <li>Terraform</li>
+                <li>Gitlab-ci / Jenkins</li>
+                <li>Terraform / Ansible</li>
                 <li>K8s / EKS / Helm</li>
                 <li>Prometheus / Grafana</li>
-                <li>Ansible</li>
+                <li>AWS / OCI</li>
+                <li>Linux: Debian / NixOS</li>
               </ul>
             </div>
           </div>
@@ -177,10 +191,11 @@
             <div class="cv-card-element-before">Dev stack</div>
             <div class="cv-card-element-content">
               <ul>
+                <li>Bash</li>
                 <li>Nodejs / TS</li>
-                <li>Bash </li>
                 <li>~ Rust</li>
                 <li>~ Java</li>
+                <li>~ Python</li>
               </ul>
             </div>
           </div>
@@ -219,20 +234,27 @@
       <div class="cv-card cv-references">
         <div class="cv-card-header">
           <div class="cv-icon">R</div>
-          <div class="cv-card-title">Reference</div>
+          <div class="cv-card-title">References</div>
         </div>
         <div class="cv-card-content">
           <div class="cv-card-element">
-            <div class="cv-card-element-before">FIVB</div>
-            <div class="cv-card-element-title">M. Romain Lanz</div>
-            <div class="cv-card-element-brand">Dev Fullstack</div>
+            <div class="cv-card-element-before">ECS - Secutix</div>
+            <div class="cv-card-element-title">Mr. Jérôme Zago</div>
+            <div class="cv-card-element-brand">Expert DevOps</div>
             <div class="cv-card-element-content">
-              +41 79 960 83 25<br />
-              romain.lanz@fivb.org<br />
+              +41 76 822 35 56<br />
+              jerome.zago@elca.ch<br />
             </div>
           </div>
-          <div class="cv-card-element" />
-          <div class="cv-card-element" />
+          <div class="cv-card-element">
+            <div class="cv-card-element-before">Olympe</div>
+            <div class="cv-card-element-title">Mr. Basile Schaeli</div>
+            <div class="cv-card-element-brand">CPO</div>
+            <div class="cv-card-element-content">
+              +41 76 427 94 10<br />
+              basile.schaeli@olympe.ch<br />
+            </div>
+          </div>
         </div>
         <div class="cv-card-header">
           <div class="cv-icon">L</div>
