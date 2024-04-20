@@ -10,14 +10,14 @@
     </div>
     <div class="cv-personal-info">
       <div class="cv-personal-info-item">
-        <div class="cv-personal-info-text">Swiss, 26 y.o</div>
+        <div class="cv-personal-info-text">Swiss, 27 y.o</div>
       </div>
       <div class="cv-personal-info-item">
         <div class="cv-personal-info-text">Single</div>
       </div>
       <div class="cv-personal-info-item">
         <div class="cv-personal-info-text">
-          Qrt du Progres 22<br />CH - 1450 Ste-Croix 
+          Rue Ancien College 10<br />CH - 1462 Yvonand
         </div>
       </div>
       <div class="cv-personal-info-item">
@@ -44,15 +44,16 @@
         </div>
         <div class="cv-card-content">
           <div class="cv-card-element">
-            <div class="cv-card-element-before"> + 10 mon.</div>
+            <div class="cv-card-element-before"> ~ 2 years</div>
             <div class="cv-card-element-title">Senior Engineer / Cloud (DevOps)</div>
             <div class="cv-card-element-brand">ELCA Cloud Services / Secutix</div>
             <div class="cv-card-element-date">06.2022 - now</div>
             <div class="cv-card-element-content">
               <ul>
-                <li>Created EKS cluster to manage Infra tools (H.Vault + Prometheus/Grafana)</li>
-                <li>Refactoring of current terraform code (AWS+OCI)</li>
-                <li>Support when fire happens on the infra (SEV1 issues)</li>
+                <li>Initiated and maintaining EKS cluster</li>
+                <li>Deployed infra tools (H.Vault + Gitlab + Prometheus/Grafana)</li>
+                <li>Refactored terraform code of full infra (AWS + OCI)</li>
+                <li>Support L3 for infrastructure / customer issues</li>
               </ul>
             </div>
           </div>
@@ -266,7 +267,7 @@
             <div class="cv-card-element-content">
               <ul>
                 <li>French (native)</li>
-                <li>English (B1)</li>
+                <li>English (fluent)</li>
                 <li>Spanish (B1)</li>
               </ul>
             </div>
