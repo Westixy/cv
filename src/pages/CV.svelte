@@ -10,14 +10,14 @@
     </div>
     <div class="cv-personal-info">
       <div class="cv-personal-info-item">
-        <div class="cv-personal-info-text">Swiss, 27 y.o</div>
+        <div class="cv-personal-info-text">Swiss, 28 y.o</div>
       </div>
       <div class="cv-personal-info-item">
         <div class="cv-personal-info-text">Single</div>
       </div>
       <div class="cv-personal-info-item">
         <div class="cv-personal-info-text">
-          Rue Ancien College 10<br />CH - 1462 Yvonand
+          Rue de l'Ancien Collège 10<br />CH - 1462 Yvonand
         </div>
       </div>
       <div class="cv-personal-info-item">
@@ -44,7 +44,7 @@
         </div>
         <div class="cv-card-content">
           <div class="cv-card-element">
-            <div class="cv-card-element-before"> ~ 2 years</div>
+            <div class="cv-card-element-before"> + 2 years</div>
             <div class="cv-card-element-title">Senior Engineer / Cloud (DevOps)</div>
             <div class="cv-card-element-brand">ELCA Cloud Services / Secutix</div>
             <div class="cv-card-element-date">06.2022 - now</div>
@@ -179,10 +179,10 @@
             <div class="cv-card-element-before">DevOps</div>
             <div class="cv-card-element-content">
               <ul>
-                <li>Gitlab-ci / Jenkins</li>
+                <li>Gitlab-ci / Jenkins <br/>/ Bitbucket Pipeline </li>
                 <li>Terraform / Ansible</li>
                 <li>K8s / EKS / Helm</li>
-                <li>Prometheus / Grafana</li>
+                <li>Prometheus / Grafana <br/>/ ELK</li>
                 <li>AWS / OCI</li>
                 <li>Linux: Debian / NixOS</li>
               </ul>
@@ -195,6 +195,7 @@
                 <li>Bash</li>
                 <li>Nodejs / TS</li>
                 <li>~ Rust</li>
+                <li>~ Golang</li>
                 <li>~ Java</li>
                 <li>~ Python</li>
               </ul>
@@ -244,7 +245,7 @@
             <div class="cv-card-element-brand">Expert DevOps</div>
             <div class="cv-card-element-content">
               +41 76 822 35 56<br />
-              jerome.zago@elca.ch<br />
+              jerome.zago@gmail.com<br />
             </div>
           </div>
           <div class="cv-card-element">
