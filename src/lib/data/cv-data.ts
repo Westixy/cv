@@ -75,12 +75,12 @@ export function buildCvData(t: Translations): CVData {
 
   const projects: Project[] = [
     {
-      id: "gallyt",
-      title: t.projects.gallyt_title,
-      context: t.projects.gallyt_context,
-      desc: t.projects.gallyt_desc,
-      detail: t.projects.gallyt_detail,
-      link: t.projects.gallyt_link,
+      id: "bbc-pipeline-tui",
+      title: t.projects.bbc_pipeline_tui_title,
+      context: t.projects.bbc_pipeline_tui_context,
+      desc: t.projects.bbc_pipeline_tui_desc,
+      detail: t.projects.bbc_pipeline_tui_detail,
+      link: t.projects.bbc_pipeline_tui_link,
     },
     {
       id: "westixy",

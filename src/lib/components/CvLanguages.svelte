@@ -1,42 +1,84 @@
 <script lang="ts">
   import type { Language } from "../types/cv";
-  import { t } from "../i18n";
 
   export let languages: Language[] = [];
 </script>
 
-<ul class="cv-languages">
+<div class="cv-languages">
   {#each languages as lang}
-    <li class="cv-lang-item">
+    <div class="cv-lang-item">
       <span class="cv-lang-name">{lang.name}</span>
+      <div class="cv-lang-bar">
+        <span
+          class="cv-lang-fill"
+          style="width: {lang.level === 'Native'
+            ? '100%'
+            : lang.level === 'Fluent'
+              ? '82%'
+              : lang.level === 'B2'
+                ? '65%'
+                : lang.level === 'B1'
+                  ? '48%'
+                  : '30%'}"
+        ></span>
+      </div>
       <span class="cv-lang-level">{lang.level}</span>
-    </li>
+    </div>
   {/each}
-</ul>
+</div>
 
 <style>
   .cv-languages {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
   }
   .cv-lang-item {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 4rem 1fr 3.5rem;
     align-items: center;
-    padding: 0.25rem 0;
-    margin-left: 5px;
-    border-left: 2px solid var(--mc);
-    padding-left: 8px;
-    margin-bottom: 4px;
+    gap: 0.5rem;
   }
   .cv-lang-name {
-    font-weight: 500;
-    font-size: 0.9rem;
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--text);
+  }
+  .cv-lang-bar {
+    height: 5px;
+    background: var(--mc-muted);
+    border-radius: 999px;
+    overflow: hidden;
+  }
+  .cv-lang-fill {
+    display: block;
+    height: 100%;
+    background: var(--mc);
+    border-radius: 999px;
   }
   .cv-lang-level {
-    font-size: 0.8rem;
-    color: var(--mc);
-    opacity: 0.85;
+    font-size: var(--text-xs);
+    color: var(--text-muted);
+    text-align: right;
+    font-weight: 500;
+  }
+
+  @media print {
+    .cv-languages {
+      gap: 1.5mm;
+    }
+    .cv-lang-item {
+      grid-template-columns: 12mm 1fr 10mm;
+      gap: 2mm;
+    }
+    .cv-lang-name {
+      font-size: 8pt;
+    }
+    .cv-lang-bar {
+      height: 3px;
+    }
+    .cv-lang-level {
+      font-size: 7pt;
+    }
   }
 </style>

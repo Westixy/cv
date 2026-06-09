@@ -9,7 +9,7 @@ const fr = {
   },
   personal: {
     nationality: "Suisse",
-    age: "28 ans",
+    age: "30 ans",
     marital: "Célibataire",
     address: "Rue de l'Ancien Collège 10, CH - 1462 Yvonand",
     phone: "+41 79 328 68 69",
@@ -30,7 +30,7 @@ const fr = {
   },
   experience: {
     elca_title: "Senior Engineer / Cloud (DevOps)",
-    elca_period: "+ 2 ans",
+    elca_period: "+ 4 ans",
     elca_company: "ELCA Cloud Services / Secutix",
     elca_date: "06.2022 - aujourd'hui",
     elca_bullets: [
@@ -114,11 +114,11 @@ const fr = {
     ],
   },
   projects: {
-    gallyt_title: "Gallyt",
-    gallyt_context: "React Riot",
-    gallyt_desc: "Client web léger pour Git",
-    gallyt_detail: "Pour le React Riot",
-    gallyt_link: "https://frama.link/gallyt",
+    bbc_pipeline_tui_title: "BBC Pipeline TUI",
+    bbc_pipeline_tui_context: "GitHub",
+    bbc_pipeline_tui_desc: "Interface terminal pour Bitbucket Pipelines",
+    bbc_pipeline_tui_detail: "Tableau de bord TUI pour surveiller et gérer les pipelines CI/CD",
+    bbc_pipeline_tui_link: "https://github.com/Westixy/bbc-pipeline-tui",
     westixy_title: "Westixy",
     westixy_context: "GitHub",
     westixy_desc: "Compte GitHub",

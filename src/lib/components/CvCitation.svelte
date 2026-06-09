@@ -2,31 +2,51 @@
   import { t } from "../i18n";
 </script>
 
-<blockquote class="cv-citation">
-  <p class="cv-citation-text">{$t.citation.text}</p>
-  <cite class="cv-citation-author">&mdash; {$t.citation.author}</cite>
-</blockquote>
+<figure class="cv-citation">
+  <blockquote>
+    <p>{$t.citation.text}</p>
+  </blockquote>
+  <figcaption>&mdash; {$t.citation.author}</figcaption>
+</figure>
 
 <style>
   .cv-citation {
-    text-align: center;
-    color: var(--mc);
-    font-size: 1.125rem;
+    padding: var(--space-lg) var(--space-2xl);
+    margin: 0;
+    background: var(--mc-subtle);
+    border-left: 4px solid var(--mc);
+    color: var(--text);
+  }
+  blockquote {
+    margin: 0;
+    font-size: var(--text-md);
     font-style: italic;
-    opacity: 0.85;
-    margin: 1.5rem 0;
-    border: none;
-    padding: 0;
+    line-height: 1.6;
+    color: var(--text);
   }
-  .cv-citation-text {
-    margin: 0 0 0.25rem 0;
+  blockquote p {
+    margin: 0;
   }
-  .cv-citation-author {
-    display: block;
+  figcaption {
+    margin-top: var(--space-sm);
+    font-size: var(--text-sm);
+    font-weight: 500;
     text-align: right;
-    font-size: 0.875rem;
-    font-style: normal;
-    padding-right: 3rem;
-    opacity: 0.8;
+    color: var(--mc);
+    padding-right: 1rem;
+  }
+
+  @media print {
+    .cv-citation {
+      padding: 3mm 0 3mm 5mm;
+      background: none;
+      border-left: 2px solid var(--mc);
+    }
+    blockquote {
+      font-size: 10pt;
+    }
+    figcaption {
+      font-size: 8.5pt;
+    }
   }
 </style>

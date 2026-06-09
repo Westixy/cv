@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { t, locale } from "../i18n";
+  import { t } from "../i18n";
   import { buildCvData } from "../data/cv-data";
   import CvHeader from "./CvHeader.svelte";
   import CvCitation from "./CvCitation.svelte";
@@ -13,7 +13,7 @@
   $: cv = buildCvData($t);
 </script>
 
-<main class="cv-document">
+<article class="cv-document">
   <CvHeader />
 
   <CvCitation />
@@ -63,36 +63,65 @@
       </CvSection>
     </aside>
   </div>
-</main>
+</article>
 
 <style>
   .cv-document {
-    max-width: 1024px;
-    margin: 0 auto;
-    padding: 1.5rem;
+    padding: 0;
     background: var(--bg);
     color: var(--text);
     font-family: var(--font);
-    line-height: 1.5;
+    line-height: 1.55;
   }
   .cv-columns {
     display: grid;
-    grid-template-columns: 1fr 300px;
-    gap: 1.5rem;
+    grid-template-columns: 1fr 320px;
+    gap: 1.2rem;
+    padding: var(--space-xl) var(--space-2xl) var(--space-2xl);
   }
+  .cv-right {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+  .cv-left {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
   @media (max-width: 768px) {
     .cv-columns {
       grid-template-columns: 1fr;
+      padding: var(--space-lg);
+    }
+    .cv-left,
+    .cv-right {
+      gap: 0;
     }
     .cv-right {
-      border-top: 1px solid var(--mc);
-      padding-top: 0.75rem;
+      margin-top: var(--space-lg);
+      padding-top: var(--space-lg);
+      border-top: 1px solid var(--border);
     }
   }
+
   @media print {
     .cv-document {
       max-width: none;
       padding: 0;
+    }
+    .cv-columns {
+      display: grid;
+      grid-template-columns: 1fr 72mm;
+      gap: 7mm;
+      padding: 5mm 0 0;
+    }
+    .cv-right {
+      gap: 0;
+    }
+    .cv-left {
+      gap: 0;
     }
   }
 </style>

@@ -1,147 +1,220 @@
 <script lang="ts">
-  import { t, locale, type Locale } from "../i18n";
-
-  const locales: Locale[] = ["en", "fr"];
-
-  function switchLocale(l: Locale) {
-    $locale = l;
-  }
+  import { t } from "../i18n";
 </script>
 
+<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
 <header class="cv-header">
-  <div class="cv-header-main">
+  <div class="cv-header-inner">
+    <!-- Photo column (left on screen, right on print) -->
+    <div class="cv-header-photo no-print">
+      <div class="cv-photo-frame">
+        <img src="/pp.jpeg" alt="" loading="eager" />
+      </div>
+    </div>
+
+    <!-- Info column -->
     <div class="cv-header-info">
       <h1 class="cv-name">{$t.name.full}</h1>
       <p class="cv-title">{$t.name.title}</p>
 
-      <div class="cv-personal">
-        <span class="cv-personal-item">
-          <svg class="cv-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-            <circle cx="9" cy="7" r="4"/>
-            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
-            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+      <ul class="cv-contact-list">
+        <li class="cv-contact-item" title="Address">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="cv-icon">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+            <circle cx="12" cy="10" r="3" />
           </svg>
-          {$t.personal.nationality} &bull; {$t.personal.age} &bull; {$t.personal.marital}
-        </span>
-        <span class="cv-personal-item">
-          <svg class="cv-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
-            <circle cx="12" cy="10" r="3"/>
+          <span>{$t.personal.address}</span>
+        </li>
+        <li class="cv-contact-item" title="Phone">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="cv-icon">
+            <rect x="5" y="2" width="14" height="20" rx="2" ry="2" />
+            <line x1="12" y1="18" x2="12.01" y2="18" />
           </svg>
-          {$t.personal.address}
-        </span>
-        <span class="cv-personal-item">
-          <svg class="cv-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <rect x="5" y="2" width="14" height="20" rx="2" ry="2"/>
-            <line x1="12" y1="18" x2="12.01" y2="18"/>
+          <a href="tel:{$t.personal.phone}">{$t.personal.phone}</a>
+        </li>
+        <li class="cv-contact-item" title="Email">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="cv-icon">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+            <polyline points="22,6 12,13 2,6" />
           </svg>
-          {$t.personal.phone}
-        </span>
-        <span class="cv-personal-item">
-          <svg class="cv-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-            <polyline points="22,6 12,13 2,6"/>
-          </svg>
-          {$t.personal.email}
-        </span>
+          <a href="mailto:{$t.personal.email}">{$t.personal.email}</a>
+        </li>
+      </ul>
+
+      <!-- Metadata badges -->
+      <div class="cv-meta-row">
+        <span class="cv-meta-badge">{$t.personal.nationality}</span>
+        <span class="cv-meta-sep">&bull;</span>
+        <span class="cv-meta-badge">{$t.personal.age}</span>
+        <span class="cv-meta-sep">&bull;</span>
+        <span class="cv-meta-badge">{$t.personal.marital}</span>
       </div>
 
-      <div class="cv-locale-switcher">
-        {#each locales as l}
-          <button
-            class="cv-locale-btn"
-            class:active={$locale === l}
-            on:click={() => switchLocale(l)}
-          >
-            {l.toUpperCase()}
-          </button>
-        {/each}
-      </div>
     </div>
 
-    <div class="cv-header-photo">
-      <img src="/pp.jpeg" alt="" class="cv-photo" />
+    <!-- Photo for print (right-aligned) -->
+    <div class="cv-header-photo cv-header-photo-print print-only">
+      <div class="cv-photo-frame">
+        <img src="/pp.jpeg" alt="" loading="eager" />
+      </div>
     </div>
   </div>
 </header>
 
 <style>
   .cv-header {
-    margin-bottom: 1rem;
+    padding: var(--space-2xl) var(--space-2xl) var(--space-xl);
+    background: linear-gradient(135deg, var(--mc-subtle) 0%, var(--bg) 100%);
+    border-bottom: 3px solid var(--mc);
+    margin-bottom: 0;
   }
-  .cv-header-main {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 1rem;
+  .cv-header-inner {
+    display: grid;
+    grid-template-columns: 96px 1fr;
+    gap: var(--space-xl);
+    align-items: start;
   }
   .cv-header-info {
-    flex: 1;
-  }
-  .cv-name {
-    font-size: 2rem;
-    font-weight: 800;
-    color: var(--mc);
-    margin: 0;
-    line-height: 1.1;
-  }
-  .cv-title {
-    font-size: 1.15rem;
-    color: var(--mc);
-    opacity: 0.75;
-    margin: 0.15rem 0 0.5rem 0;
-  }
-  .cv-personal {
     display: flex;
     flex-direction: column;
-    gap: 0.2rem;
-    margin-bottom: 0.5rem;
+    gap: var(--space-md);
   }
-  .cv-personal-item {
+
+  /* Name */
+  .cv-name {
+    font-size: var(--text-3xl);
+    font-weight: 800;
+    color: var(--mc);
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+  }
+  .cv-title {
+    font-size: var(--text-lg);
+    font-weight: 500;
+    color: var(--text-muted);
+  }
+
+  /* Contact list */
+  .cv-contact-list {
+    list-style: none;
     display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm) var(--space-xl);
+  }
+  .cv-contact-item {
+    display: inline-flex;
     align-items: center;
     gap: 0.4rem;
-    font-size: 0.8rem;
+    font-size: var(--text-sm);
     color: var(--text);
-    opacity: 0.85;
+  }
+  .cv-contact-item a {
+    color: var(--text);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.15s;
+  }
+  .cv-contact-item a:hover {
+    border-bottom-color: var(--mc);
   }
   .cv-icon {
-    width: 14px;
-    height: 14px;
+    width: 15px;
+    height: 15px;
     flex-shrink: 0;
     color: var(--mc);
-    opacity: 0.7;
+    opacity: 0.65;
   }
-  .cv-locale-switcher {
+
+  /* Meta badges */
+  .cv-meta-row {
     display: flex;
-    gap: 0.25rem;
+    align-items: center;
+    gap: var(--space-sm);
   }
-  .cv-locale-btn {
-    background: none;
-    border: 1px solid var(--mc);
+  .cv-meta-badge {
+    font-size: var(--text-xs);
+    padding: 0.15rem 0.6rem;
+    background: var(--mc-muted);
     color: var(--mc);
-    padding: 0.15rem 0.5rem;
-    border-radius: 3px;
-    font-size: 0.7rem;
-    cursor: pointer;
-    transition: all 0.15s;
-    opacity: 0.6;
+    border-radius: 999px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
   }
-  .cv-locale-btn:hover,
-  .cv-locale-btn.active {
-    opacity: 1;
-    background: var(--mc);
-    color: var(--bg);
+  .cv-meta-sep {
+    color: var(--text-muted);
+    font-size: var(--text-xs);
   }
-  .cv-header-photo {
-    flex-shrink: 0;
-  }
-  .cv-photo {
+
+  /* Photo */
+  .cv-photo-frame {
     width: 96px;
     height: 96px;
     border-radius: 50%;
-    object-fit: cover;
+    overflow: hidden;
     border: 3px solid var(--mc);
+    box-shadow: var(--shadow-sm);
+  }
+  .cv-photo-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* Print photo is right-aligned */
+  .cv-header-photo-print {
+    grid-column: 2;
+    grid-row: 1;
+    justify-self: end;
+  }
+  .cv-header-photo-print .cv-photo-frame {
+    width: 80px;
+    height: 80px;
+  }
+
+  /* Hide screen photo on print, show print photo */
+  @media print {
+    .cv-header {
+      padding: 8mm 0 3mm;
+      background: none;
+      border-bottom: 2px solid var(--mc);
+    }
+    .cv-header-inner {
+      grid-template-columns: 1fr 80px;
+      gap: 4mm;
+    }
+    .cv-photo-frame {
+      width: 80px;
+      height: 80px;
+      border-width: 2px;
+    }
+    .cv-name {
+      font-size: 20pt;
+    }
+    .cv-title {
+      font-size: 10.5pt;
+    }
+    .cv-contact-item {
+      font-size: 8.5pt;
+    }
+    .cv-meta-badge {
+      font-size: 7.5pt;
+    }
+    .cv-icon {
+      width: 13px;
+      height: 13px;
+    }
+    .print-only {
+      display: block !important;
+    }
+    .no-print {
+      display: none !important;
+    }
+  }
+
+  @media screen {
+    .print-only {
+      display: none;
+    }
   }
 </style>

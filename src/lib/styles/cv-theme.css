@@ -1,39 +1,94 @@
-/* CV Theme — clean professional styling */
+/* ═══════════════════════════════════════════
+   CV Theme — Professional UI System
+   ═══════════════════════════════════════════ */
 
+/* ── Design Tokens ─────────────────────── */
 :root {
-  --mc: #1a56db;          /* Main color */
-  --text: #1f2937;        /* Body text */
-  --bg: #ffffff;          /* Background */
-  --font: "Segoe UI", system-ui, -apple-system, sans-serif;
+  /* Palette */
+  --mc:        #1e40af;   /* Main color — deep blue */
+  --mc-light:  #3b82f6;   /* Lighter accent */
+  --mc-muted:  #dbeafe;   /* Very light tint for backgrounds */
+  --mc-subtle: #eff6ff;   /* Subtle surface */
+  --text:       #1e293b;  /* Body text */
+  --text-muted: #64748b;  /* Secondary text */
+  --bg:         #ffffff;  /* Surface background */
+  --border:     #e2e8f0;  /* Subtle borders */
+  --radius:     6px;      /* Border radius */
+  --radius-sm:  4px;      /* Small radius */
+
+  /* Typography */
+  --font:  "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", "Fira Code", monospace;
+
+  /* Type scale */
+  --text-xs:   0.7rem;
+  --text-sm:   0.8rem;
+  --text-base: 0.875rem;
+  --text-md:   0.95rem;
+  --text-lg:   1.1rem;
+  --text-xl:   1.25rem;
+  --text-2xl:  1.6rem;
+  --text-3xl:  2rem;
+
+  /* Spacing */
+  --space-xs: 0.15rem;
+  --space-sm: 0.3rem;
+  --space-md: 0.5rem;
+  --space-lg: 0.75rem;
+  --space-xl: 1rem;
+  --space-2xl:1.5rem;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.04);
+  --shadow-md: 0 2px 8px rgba(0,0,0,0.06);
+
   color-scheme: light;
   accent-color: var(--mc);
 }
 
-*,
-*::before,
-*::after {
+/* ── Reset & Base ──────────────────────── */
+*, *::before, *::after {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
 }
 
 body {
-  margin: 0;
-  padding: 0;
-  background: var(--bg);
+  background: #f8fafc;  /* Slightly off-white for contrast against CV */
   color: var(--text);
   font-family: var(--font);
-  font-size: 13px;
+  font-size: var(--text-base);
   line-height: 1.55;
 }
 
+/* ── Typography ────────────────────────── */
 h1, h2, h3, h4, h5, h6 {
   color: var(--mc);
+  line-height: 1.25;
 }
 
 a {
   color: var(--mc);
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+::selection {
+  background: var(--mc);
+  color: #fff;
+}
+
+/* ── Utility print class ───────────────── */
+@media print {
+  body {
+    background: #fff;  /* Remove body tint for print */
+  }
 }

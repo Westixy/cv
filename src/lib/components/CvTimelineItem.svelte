@@ -1,38 +1,28 @@
 <script lang="ts">
-  import { createEventDispatcher } from "svelte";
-
   export let period: string;
   export let title: string;
   export let subtitle: string;
   export let date: string;
   export let bullets: string[] = [];
-  export let collapsible = false;
-
-  let expanded = !collapsible;
-  const dispatch = createEventDispatcher();
-
-  function toggle() {
-    if (!collapsible) return;
-    expanded = !expanded;
-    dispatch(expanded ? "expand" : "collapse");
-  }
 </script>
 
-<article class="cv-timeline-item" class:collapsible class:collapsed={!expanded}>
-  <div class="cv-timeline-bar">{period}</div>
+<article class="cv-timeline-item">
+  <div class="cv-timeline-marker">
+    <span class="cv-timeline-period">{period}</span>
+    <div class="cv-timeline-dot-line">
+      <span class="cv-timeline-dot"></span>
+      <span class="cv-timeline-line"></span>
+    </div>
+  </div>
   <div class="cv-timeline-body">
-    <header
-      class="cv-timeline-header"
-      on:click={toggle}
-      on:keydown={(e) => e.key === "Enter" && toggle()}
-      role={collapsible ? "button" : undefined}
-      tabindex={collapsible ? 0 : undefined}
-    >
+    <div class="cv-timeline-header">
       <h3 class="cv-timeline-title">{title}</h3>
       <span class="cv-timeline-subtitle">&mdash; {subtitle}</span>
-    </header>
-    <time class="cv-timeline-date">{date}</time>
-    {#if expanded && bullets.length > 0}
+    </div>
+    {#if date}
+      <time class="cv-timeline-date">{date}</time>
+    {/if}
+    {#if bullets.length > 0}
       <ul class="cv-timeline-bullets">
         {#each bullets as bullet}
           <li>{bullet}</li>
@@ -44,29 +34,62 @@
 
 <style>
   .cv-timeline-item {
+    display: grid;
+    grid-template-columns: 5.5rem 1fr;
+    gap: 0.25rem;
     position: relative;
-    padding-left: 3rem;
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.35rem;
   }
-  .cv-timeline-bar {
-    position: absolute;
-    left: 0;
-    top: 0;
-    height: 100%;
-    transform-origin: 100% 50%;
-    transform: rotate(180deg);
-    writing-mode: vertical-lr;
+  /* Marker column */
+  .cv-timeline-marker {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 0.15rem;
+  }
+  .cv-timeline-period {
+    display: block;
+    font-size: var(--text-xs);
+    color: var(--text-muted);
+    font-weight: 600;
     text-align: center;
-    box-sizing: border-box;
-    font-size: 0.7rem;
-    border-right: 2px solid var(--mc);
-    padding: 0 3px;
-    color: var(--mc);
-    border-radius: 2px;
-    cursor: default;
+    line-height: 1.25;
+    margin-bottom: 0.3rem;
+    white-space: nowrap;
   }
-  .cv-timeline-body {
+  .cv-timeline-dot-line {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     flex: 1;
+    width: 100%;
+  }
+  .cv-timeline-dot {
+    display: block;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--mc);
+    flex-shrink: 0;
+    z-index: 1;
+  }
+  .cv-timeline-line {
+    display: block;
+    position: absolute;
+    top: 10px;
+    bottom: -0.35rem;
+    width: 2px;
+    background: var(--mc);
+    opacity: 0.2;
+  }
+  .cv-timeline-item:last-child .cv-timeline-line {
+    display: none;
+  }
+  /* Body */
+  .cv-timeline-body {
+    padding-bottom: 0.3rem;
   }
   .cv-timeline-header {
     display: flex;
@@ -74,42 +97,72 @@
     gap: 0.4rem;
     flex-wrap: wrap;
   }
-  .collapsible .cv-timeline-header {
-    cursor: pointer;
-    user-select: none;
-  }
-  .collapsible .cv-timeline-header:hover .cv-timeline-title {
-    text-decoration: underline;
-    text-decoration-style: dotted;
-  }
   .cv-timeline-title {
     display: inline;
+    font-size: var(--text-md);
+    font-weight: 700;
     color: var(--mc);
-    font-size: 1.1rem;
-    font-weight: 600;
-    margin: 0;
   }
   .cv-timeline-subtitle {
-    font-size: 0.85rem;
-    opacity: 0.75;
+    font-size: var(--text-sm);
+    color: var(--text-muted);
+    font-weight: 500;
   }
   .cv-timeline-date {
     display: block;
-    color: var(--mc);
-    font-size: 0.7rem;
-    opacity: 0.8;
+    font-size: var(--text-xs);
+    color: var(--text-muted);
     margin-top: 0.1rem;
+    letter-spacing: 0.02em;
   }
   .cv-timeline-bullets {
-    padding-left: 1.2rem;
-    margin: 0.3rem 0 0 0;
-    font-size: 0.85rem;
-    line-height: 1.5;
+    padding-left: 1.1rem;
+    margin: 0.25rem 0 0 0;
+    font-size: var(--text-sm);
+    line-height: 1.55;
+    list-style: disc outside;
   }
   .cv-timeline-bullets li {
-    margin-bottom: 0.15rem;
+    margin-bottom: 0.1rem;
+    color: var(--text);
   }
-  .collapsed .cv-timeline-bar {
-    opacity: 0.6;
+  .cv-timeline-bullets li::marker {
+    color: var(--mc);
+    opacity: 0.5;
+    font-size: 0.75em;
+  }
+
+  @media print {
+    .cv-timeline-item {
+      grid-template-columns: 14mm 1fr;
+      gap: 2mm;
+      margin-bottom: 1.5mm;
+    }
+    .cv-timeline-period {
+      font-size: 6.5pt;
+      margin-bottom: 1.5mm;
+    }
+    .cv-timeline-dot {
+      width: 6px;
+      height: 6px;
+    }
+    .cv-timeline-line {
+      top: 7px;
+      width: 1.5px;
+    }
+    .cv-timeline-title {
+      font-size: 10pt;
+    }
+    .cv-timeline-subtitle {
+      font-size: 8.5pt;
+    }
+    .cv-timeline-date {
+      font-size: 7pt;
+    }
+    .cv-timeline-bullets {
+      font-size: 8.5pt;
+      line-height: 1.4;
+      margin-top: 1mm;
+    }
   }
 </style>
