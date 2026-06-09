@@ -1,7 +1,7 @@
 <script lang="ts">
   import { revealOnScroll } from "../actions/reveal";
   import { writable } from "svelte/store";
-  import { hiddenBullets, toggleBullet } from "../stores/visibility";
+  import { hiddenBullets, toggleBullet, visibilityVersion } from "../stores/visibility";
 
   export let period: string;
   export let title: string;
@@ -17,7 +17,12 @@
     collapsed.update((v) => !v);
   }
 
-  $: hiddenSet = $hiddenBullets;
+  let hiddenSet: Set<string> = new Set();
+  $: {
+    // force reactivity on visibilityVersion tick
+    void $visibilityVersion;
+    hiddenSet = $hiddenBullets;
+  }
 </script>
 
 <article class="cv-timeline-item" use:revealOnScroll>
