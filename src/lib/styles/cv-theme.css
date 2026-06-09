@@ -1,0 +1,39 @@
+/* CV Theme — clean professional styling */
+
+:root {
+  --mc: #1a56db;          /* Main color */
+  --text: #1f2937;        /* Body text */
+  --bg: #ffffff;          /* Background */
+  --font: "Segoe UI", system-ui, -apple-system, sans-serif;
+  color-scheme: light;
+  accent-color: var(--mc);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--mc);
+}
+
+a {
+  color: var(--mc);
+}
