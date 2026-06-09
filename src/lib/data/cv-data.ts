@@ -10,6 +10,7 @@ export function buildCvData(t: Translations): CVData {
       company: t.experience.elca_company,
       date: t.experience.elca_date,
       bullets: t.experience.elca_bullets,
+      summary: t.experience.elca_summary,
     },
     {
       id: "nexthink",
@@ -18,6 +19,7 @@ export function buildCvData(t: Translations): CVData {
       company: t.experience.nexthink_company,
       date: t.experience.nexthink_date,
       bullets: t.experience.nexthink_bullets,
+      summary: t.experience.nexthink_summary,
     },
     {
       id: "olympe",
@@ -26,6 +28,7 @@ export function buildCvData(t: Translations): CVData {
       company: t.experience.olympe_company,
       date: t.experience.olympe_date,
       bullets: t.experience.olympe_bullets,
+      summary: t.experience.olympe_summary,
     },
     {
       id: "infomaniak",
@@ -34,6 +37,7 @@ export function buildCvData(t: Translations): CVData {
       company: t.experience.infomaniak_company,
       date: t.experience.infomaniak_date,
       bullets: t.experience.infomaniak_bullets,
+      summary: t.experience.infomaniak_summary,
     },
     {
       id: "fivb",
@@ -42,6 +46,7 @@ export function buildCvData(t: Translations): CVData {
       company: t.experience.fivb_company,
       date: t.experience.fivb_date,
       bullets: t.experience.fivb_bullets,
+      summary: t.experience.fivb_summary,
     },
   ];
 
@@ -52,6 +57,7 @@ export function buildCvData(t: Translations): CVData {
       title: t.training.technician_title,
       school: t.training.technician_school,
       bullets: t.training.technician_bullets,
+      summary: t.training.technician_summary,
     },
     {
       id: "cfc",
@@ -59,6 +65,7 @@ export function buildCvData(t: Translations): CVData {
       title: t.training.cfc_title,
       school: t.training.cfc_school,
       bullets: t.training.cfc_bullets,
+      summary: t.training.cfc_summary,
     },
   ];
 

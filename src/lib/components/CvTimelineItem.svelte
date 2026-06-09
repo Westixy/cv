@@ -1,10 +1,23 @@
 <script lang="ts">
   import { revealOnScroll } from "../actions/reveal";
+  import { writable } from "svelte/store";
+  import { hiddenBullets, toggleBullet } from "../stores/visibility";
+
   export let period: string;
   export let title: string;
   export let subtitle: string;
   export let date: string;
   export let bullets: string[] = [];
+  export let summary: string = "";
+  export let itemId: string = "";
+
+  const collapsed = writable(true);
+
+  function toggle() {
+    collapsed.update((v) => !v);
+  }
+
+  $: hiddenSet = $hiddenBullets;
 </script>
 
 <article class="cv-timeline-item" use:revealOnScroll>
@@ -23,12 +36,54 @@
     {#if date}
       <time class="cv-timeline-date">{date}</time>
     {/if}
+    {#if summary}
+      <p class="cv-timeline-summary" class:cv-summary-hidden={!$collapsed}>{summary}</p>
+    {/if}
     {#if bullets.length > 0}
-      <ul class="cv-timeline-bullets">
-        {#each bullets as bullet}
-          <li>{bullet}</li>
+      <ul class="cv-timeline-bullets" class:cv-bullets-hidden={$collapsed}>
+        {#each bullets as bullet, i}
+          {@const key = `${itemId}:${i}`}
+          {@const isHidden = hiddenSet.has(key)}
+          {#if isHidden}
+            <li class="cv-bullet-row cv-bullet-hidden-row no-print">
+              <button
+                class="cv-bullet-hide strikethrough"
+                on:click|stopPropagation={() => toggleBullet(itemId, i)}
+                type="button"
+                aria-label="Show bullet"
+                title="This bullet is hidden. Click to show."
+              >
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14">
+                  <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24" />
+                  <line x1="1" y1="1" x2="23" y2="23" />
+                </svg>
+              </button>
+              <span class="cv-bullet-hidden-text">{bullet}</span>
+            </li>
+          {:else}
+            <li class="cv-bullet-row">
+              <button
+                class="cv-bullet-hide no-print"
+                on:click|stopPropagation={() => toggleBullet(itemId, i)}
+                type="button"
+                aria-label="Hide bullet before print"
+                title="Click to hide this bullet"
+              >
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14">
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                  <circle cx="12" cy="12" r="3" />
+                </svg>
+              </button>
+              <span class="cv-bullet-text">{bullet}</span>
+            </li>
+          {/if}
         {/each}
       </ul>
+    {/if}
+    {#if bullets.length > 0}
+      <button class="cv-timeline-toggle" on:click={toggle} type="button" aria-label="Toggle details">
+        {$collapsed ? "Show more" : "Show less"}
+      </button>
     {/if}
   </div>
 </article>
@@ -116,21 +171,92 @@
     margin-top: 0.1rem;
     letter-spacing: 0.02em;
   }
+  .cv-timeline-summary {
+    font-size: var(--text-sm);
+    color: var(--text-muted);
+    line-height: 1.5;
+    margin: 0.2rem 0 0;
+    font-style: italic;
+  }
+  .cv-summary-hidden {
+    display: none;
+  }
   .cv-timeline-bullets {
-    padding-left: 1.1rem;
+    padding-left: 0;
     margin: 0.25rem 0 0 0;
     font-size: var(--text-sm);
     line-height: 1.55;
-    list-style: disc outside;
+    list-style: none;
   }
-  .cv-timeline-bullets li {
+  .cv-bullets-hidden {
+    display: none;
+  }
+  .cv-bullet-row {
+    display: flex;
+    align-items: baseline;
+    gap: 0.25rem;
     margin-bottom: 0.1rem;
     color: var(--text);
   }
-  .cv-timeline-bullets li::marker {
+  .cv-bullet-row::before {
+    content: "•";
     color: var(--mc);
     opacity: 0.5;
     font-size: 0.75em;
+    flex-shrink: 0;
+    width: 0.75rem;
+    text-align: center;
+  }
+  .cv-bullet-text {
+    flex: 1;
+  }
+  .cv-bullet-hide {
+    all: unset;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 18px;
+    height: 18px;
+    border-radius: 3px;
+    color: var(--text-muted);
+    opacity: 0.4;
+    transition: opacity 0.15s, background 0.15s, color 0.15s;
+  }
+  .cv-bullet-hide:hover {
+    opacity: 1;
+    background: var(--subtle);
+    color: var(--mc);
+  }
+  .cv-bullet-hide.strikethrough {
+    opacity: 0.8;
+    color: var(--mc);
+  }
+  .cv-timeline-toggle {
+    all: unset;
+    cursor: pointer;
+    font-size: var(--text-xs);
+    color: var(--mc);
+    font-weight: 600;
+    margin-top: 0.15rem;
+    display: inline-block;
+    user-select: none;
+  }
+  .cv-timeline-toggle:hover {
+    text-decoration: underline;
+  }
+  .cv-bullet-hidden-row::before {
+    content: "⊘";
+    color: var(--text-muted);
+    opacity: 0.35;
+    font-size: 0.7em;
+  }
+  .cv-bullet-hidden-text {
+    flex: 1;
+    color: var(--text-muted);
+    opacity: 0.45;
+    text-decoration: line-through;
   }
 
   @media print {
@@ -160,10 +286,16 @@
     .cv-timeline-date {
       font-size: 7pt;
     }
+    .cv-timeline-summary {
+      font-size: 8pt;
+    }
     .cv-timeline-bullets {
       font-size: 8.5pt;
       line-height: 1.4;
       margin-top: 1mm;
+    }
+    .cv-timeline-toggle {
+      display: none;
     }
   }
 </style>

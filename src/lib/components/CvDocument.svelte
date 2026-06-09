@@ -18,25 +18,29 @@
   <div class="cv-columns">
     <div class="cv-left">
       <CvSection title={$t.sections.experiences}>
-        {#each cv.experiences as exp}
+        {#each cv.experiences as exp, i}
           <CvTimelineItem
+            itemId={`exp-${i}`}
             period={exp.period}
             title={exp.title}
             subtitle={exp.company}
             date={exp.date}
             bullets={exp.bullets}
+            summary={exp.summary}
           />
         {/each}
       </CvSection>
 
       <CvSection title={$t.sections.trainings}>
-        {#each cv.trainings as training}
+        {#each cv.trainings as training, i}
           <CvTimelineItem
+            itemId={`trn-${i}`}
             period={training.period}
             title={training.title}
             subtitle={training.school}
             date=""
             bullets={training.bullets}
+            summary={training.summary}
           />
         {/each}
       </CvSection>
@@ -72,7 +76,7 @@
   }
   .cv-columns {
     display: grid;
-    grid-template-columns: 1fr 320px;
+    grid-template-columns: 1fr 280px;
     gap: 1.2rem;
     padding: var(--space-xl) var(--space-2xl) var(--space-2xl);
   }
@@ -110,7 +114,7 @@
     }
     .cv-columns {
       display: grid;
-      grid-template-columns: 1fr 72mm;
+      grid-template-columns: 1fr 62mm;
       gap: 7mm;
       padding: 5mm 0 0;
     }

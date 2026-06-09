@@ -2,6 +2,7 @@
   import CvDocument from "./lib/components/CvDocument.svelte";
   import { locale, type Locale } from "./lib/i18n";
   import { theme } from "./lib/stores/theme";
+  import { clearHiddenBullets } from "./lib/stores/visibility";
 
   const locales: Locale[] = ["en", "fr"];
 
@@ -31,6 +32,10 @@
 
   function handlePrint() {
     window.print();
+  }
+
+  function handleResetHidden() {
+    clearHiddenBullets();
   }
 
   function switchLocale(l: Locale) {
@@ -68,6 +73,13 @@
           <rect x="6" y="14" width="12" height="8" />
         </svg>
         Print / PDF
+      </button>
+      <button class="app-nav-btn" on:click={handleResetHidden} title="Show all hidden bullet points">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16">
+          <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+          <circle cx="12" cy="12" r="3" />
+        </svg>
+        Show all
       </button>
       {#each locales as l}
         <button

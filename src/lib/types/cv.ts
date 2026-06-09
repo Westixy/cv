@@ -10,6 +10,7 @@ export interface Experience {
   company: string;
   date: string;
   bullets: string[];
+  summary: string;
 }
 
 export interface Training {
@@ -18,6 +19,7 @@ export interface Training {
   title: string;
   school: string;
   bullets: string[];
+  summary: string;
 }
 
 export interface TechCategory {
