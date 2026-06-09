@@ -1,19 +1,60 @@
 <script lang="ts">
   import CvDocument from "./lib/components/CvDocument.svelte";
   import { locale, type Locale } from "./lib/i18n";
+  import { theme } from "./lib/stores/theme";
 
   const locales: Locale[] = ["en", "fr"];
+
+  // ── Konami easter egg ─────────────────
+  const KONAMI = [
+    "ArrowUp", "ArrowUp",
+    "ArrowDown", "ArrowDown",
+    "ArrowLeft", "ArrowRight",
+    "ArrowLeft", "ArrowRight",
+    "b", "a",
+  ];
+  let konamiBuf: string[] = [];
+  let easterEgg = false;
+
+  function handleKonami(e: KeyboardEvent) {
+    konamiBuf.push(e.key);
+    if (konamiBuf.length > KONAMI.length) konamiBuf.shift();
+    if (
+      konamiBuf.length === KONAMI.length &&
+      konamiBuf.every((k, i) => k === KONAMI[i])
+    ) {
+      easterEgg = true;
+      konamiBuf = [];
+      setTimeout(() => (easterEgg = false), 4000);
+    }
+  }
 
   function handlePrint() {
     window.print();
   }
+
   function switchLocale(l: Locale) {
     $locale = l;
   }
+
+  $: currentTheme = $theme;
+
+  function toggleTheme() {
+    theme.toggle();
+  }
 </script>
 
+<svelte:window on:keydown={handleKonami} />
+
 <div class="app-shell">
-  <!-- Print-only header band -->
+  {#if easterEgg}
+    <div class="easter-toast" class:visible={easterEgg}>
+      <span class="easter-toast-icon">🎮</span>
+      <span>Nice moves! Now go crush that interview.</span>
+    </div>
+  {/if}
+
+  <!-- Shell header -->
   <header class="app-header no-print">
     <div class="app-header-inner">
       <h1 class="app-logo">Esteban Sotillo</h1>
@@ -38,6 +79,30 @@
           {l.toUpperCase()}
         </button>
       {/each}
+      <button
+        class="app-nav-btn app-theme-btn no-print"
+        on:click={toggleTheme}
+        aria-label="Toggle theme"
+        title={currentTheme === 'light' ? 'Switch to dark mode' : 'Switch to light mode'}
+      >
+        {#if currentTheme === 'light'}
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+          </svg>
+        {:else}
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16">
+            <circle cx="12" cy="12" r="5" />
+            <line x1="12" y1="1" x2="12" y2="3" />
+            <line x1="12" y1="21" x2="12" y2="23" />
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+            <line x1="1" y1="12" x2="3" y2="12" />
+            <line x1="21" y1="12" x2="23" y2="12" />
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+          </svg>
+        {/if}
+      </button>
     </nav>
   </header>
 
@@ -67,7 +132,52 @@
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    background: #f1f5f9;
+    background: var(--shell-bg);
+    color: var(--shell-text);
+    transition: background 0.3s, color 0.3s;
+  }
+
+  /* ── Scroll-reveal ───────────────── */
+  @keyframes reveal-up {
+    0%   { opacity: 0; transform: translateY(18px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+  :global(.reveal-on-scroll) {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+  }
+  :global(.reveal-on-scroll.visible) {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── Easter egg toast ─────────── */
+  .easter-toast {
+    position: fixed;
+    bottom: var(--space-lg);
+    left: 50%;
+    transform: translateX(-50%) translateY(8px);
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    background: var(--subtle);
+    border: none;
+    border-radius: 999px;
+    padding: 0.35rem 0.9rem;
+    font-size: var(--text-xs);
+    color: var(--text-muted);
+    opacity: 0;
+    transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+  }
+  .easter-toast.visible {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+  .easter-toast-icon {
+    font-size: 0.85rem;
+    line-height: 1;
   }
 
   /* ── Header ───────────────────── */
@@ -76,12 +186,13 @@
     justify-content: space-between;
     align-items: center;
     padding: var(--space-md) var(--space-xl);
-    background: var(--bg);
-    border-bottom: 1px solid var(--border);
+    background: var(--shell-header-bg);
+    border-bottom: 1px solid var(--shell-border);
     position: sticky;
     top: 0;
     z-index: 100;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    box-shadow: 0 1px 3px var(--shell-shadow);
+    transition: background 0.3s, border-color 0.3s;
   }
   .app-header-inner {
     display: flex;
@@ -123,7 +234,7 @@
     border-radius: var(--radius);
     cursor: pointer;
     text-decoration: none;
-    transition: background 0.15s;
+    transition: background 0.15s, color 0.15s, border-color 0.15s;
   }
   .app-nav-btn:hover {
     background: var(--mc-subtle);
@@ -132,6 +243,10 @@
     background: var(--mc);
     color: #fff;
     border-color: var(--mc);
+  }
+  .app-theme-btn {
+    padding: 0.35rem 0.55rem;
+    line-height: 1;
   }
 
   /* ── Main content area ─────────── */
@@ -145,9 +260,15 @@
     width: 210mm;
     min-height: 297mm;
     background: var(--bg);
-    box-shadow: 0 4px 24px rgba(0,0,0,0.10), 0 1px 4px rgba(0,0,0,0.06);
+    box-shadow: var(--shadow-page);
     border-radius: 2px;
     overflow: hidden;
+    transition: background 0.3s, box-shadow 0.3s;
+    animation: page-enter 0.5s ease-out;
+  }
+  @keyframes page-enter {
+    0%   { opacity: 0; transform: translateY(12px); }
+    100% { opacity: 1; transform: translateY(0); }
   }
 
   /* ── FAB print button ──────────── */
@@ -183,7 +304,8 @@
     padding: var(--space-md);
     font-size: var(--text-xs);
     color: var(--text-muted);
-    border-top: 1px solid var(--border);
+    border-top: 1px solid var(--shell-border);
+    transition: border-color 0.3s;
   }
   .app-footer code {
     font-family: var(--font-mono);

@@ -1,9 +1,10 @@
 <script lang="ts">
+  import { revealOnScroll } from "../actions/reveal";
   export let title: string;
   export let icon: string | undefined = undefined;
 </script>
 
-<section class="cv-section">
+<section class="cv-section" use:revealOnScroll>
   <h2 class="cv-section-title">
     {#if icon}
       <span class="cv-section-icon">{icon}</span>

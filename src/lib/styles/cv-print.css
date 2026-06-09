@@ -71,19 +71,6 @@
     height: 12px !important;
   }
 
-  /* ── Citation ─────────────────────────── */
-  .cv-citation {
-    padding: 2mm 0 2mm 4mm !important;
-    border-left-width: 2px !important;
-    background: none !important;
-  }
-  .cv-citation blockquote {
-    font-size: 9pt !important;
-  }
-  .cv-citation figcaption {
-    font-size: 8pt !important;
-  }
-
   /* ── Two-column layout ────────────────── */
   .cv-columns {
     display: grid !important;
@@ -222,8 +209,8 @@
     border-width: 2px !important;
   }
   .cv-header-inner {
-    grid-template-columns: 1fr 72px !important;
-    gap: 4mm !important;
+    grid-template-columns: 72px 1fr !important;
+    gap: 5mm !important;
   }
 
   /* ── Hide screen-only elements ────────── */
@@ -232,11 +219,6 @@
   .app-footer,
   .fab-print {
     display: none !important;
-  }
-
-  /* ── Show print-only elements ─────────── */
-  .print-only {
-    display: block !important;
   }
 
   /* ── Make anchor hrefs visible ────────── */

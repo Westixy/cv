@@ -5,8 +5,8 @@
 <!-- svelte-ignore a11y-no-noninteractive-tabindex -->
 <header class="cv-header">
   <div class="cv-header-inner">
-    <!-- Photo column (left on screen, right on print) -->
-    <div class="cv-header-photo no-print">
+    <!-- Photo column -->
+    <div class="cv-header-photo">
       <div class="cv-photo-frame">
         <img src="/pp.jpeg" alt="" loading="eager" />
       </div>
@@ -14,8 +14,13 @@
 
     <!-- Info column -->
     <div class="cv-header-info">
-      <h1 class="cv-name">{$t.name.full}</h1>
-      <p class="cv-title">{$t.name.title}</p>
+      <div class="cv-header-top">
+        <div class="cv-header-identity">
+          <h1 class="cv-name">{$t.name.full}</h1>
+          <p class="cv-title">{$t.name.title}</p>
+        </div>
+        <p class="cv-tagline">&ldquo;{$t.citation.text}&rdquo;</p>
+      </div>
 
       <ul class="cv-contact-list">
         <li class="cv-contact-item" title="Address">
@@ -51,13 +56,6 @@
       </div>
 
     </div>
-
-    <!-- Photo for print (right-aligned) -->
-    <div class="cv-header-photo cv-header-photo-print print-only">
-      <div class="cv-photo-frame">
-        <img src="/pp.jpeg" alt="" loading="eager" />
-      </div>
-    </div>
   </div>
 </header>
 
@@ -79,6 +77,17 @@
     flex-direction: column;
     gap: var(--space-md);
   }
+  .cv-header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: var(--space-xl);
+  }
+  .cv-header-identity {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
 
   /* Name */
   .cv-name {
@@ -92,6 +101,20 @@
     font-size: var(--text-lg);
     font-weight: 500;
     color: var(--text-muted);
+    margin-bottom: 0;
+  }
+  .cv-tagline {
+    font-size: var(--text-xs);
+    font-style: italic;
+    color: var(--text-muted);
+    opacity: 0.6;
+    max-width: 32ch;
+    line-height: 1.5;
+    text-align: right;
+    border-right: 2px solid var(--mc);
+    padding-right: 0.75rem;
+    padding-top: 0.35rem;
+    flex-shrink: 0;
   }
 
   /* Contact list */
@@ -161,18 +184,6 @@
     display: block;
   }
 
-  /* Print photo is right-aligned */
-  .cv-header-photo-print {
-    grid-column: 2;
-    grid-row: 1;
-    justify-self: end;
-  }
-  .cv-header-photo-print .cv-photo-frame {
-    width: 80px;
-    height: 80px;
-  }
-
-  /* Hide screen photo on print, show print photo */
   @media print {
     .cv-header {
       padding: 8mm 0 3mm;
@@ -180,19 +191,33 @@
       border-bottom: 2px solid var(--mc);
     }
     .cv-header-inner {
-      grid-template-columns: 1fr 80px;
-      gap: 4mm;
+      grid-template-columns: 72px 1fr;
+      gap: 5mm;
     }
     .cv-photo-frame {
-      width: 80px;
-      height: 80px;
+      width: 72px;
+      height: 72px;
       border-width: 2px;
     }
     .cv-name {
       font-size: 20pt;
     }
+    .cv-header-top {
+      flex-direction: column;
+      gap: 1mm;
+    }
     .cv-title {
       font-size: 10.5pt;
+    }
+    .cv-tagline {
+      font-size: 7pt;
+      text-align: left;
+      border-right: none;
+      border-left: 1px solid var(--mc);
+      padding-right: 0;
+      padding-left: 2mm;
+      padding-top: 0;
+      max-width: none;
     }
     .cv-contact-item {
       font-size: 8.5pt;
@@ -203,18 +228,6 @@
     .cv-icon {
       width: 13px;
       height: 13px;
-    }
-    .print-only {
-      display: block !important;
-    }
-    .no-print {
-      display: none !important;
-    }
-  }
-
-  @media screen {
-    .print-only {
-      display: none;
     }
   }
 </style>

@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { revealOnScroll } from "../actions/reveal";
   export let period: string;
   export let title: string;
   export let subtitle: string;
@@ -6,7 +7,7 @@
   export let bullets: string[] = [];
 </script>
 
-<article class="cv-timeline-item">
+<article class="cv-timeline-item" use:revealOnScroll>
   <div class="cv-timeline-marker">
     <span class="cv-timeline-period">{period}</span>
     <div class="cv-timeline-dot-line">

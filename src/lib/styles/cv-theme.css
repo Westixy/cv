@@ -9,12 +9,20 @@
   --mc-light:  #3b82f6;   /* Lighter accent */
   --mc-muted:  #dbeafe;   /* Very light tint for backgrounds */
   --mc-subtle: #eff6ff;   /* Subtle surface */
+  --subtle:    #f8fafc;   /* Generic subtle surface */
   --text:       #1e293b;  /* Body text */
   --text-muted: #64748b;  /* Secondary text */
   --bg:         #ffffff;  /* Surface background */
   --border:     #e2e8f0;  /* Subtle borders */
   --radius:     6px;      /* Border radius */
   --radius-sm:  4px;      /* Small radius */
+
+  /* Shell */
+  --shell-bg: #f1f5f9;
+  --shell-text: var(--text);
+  --shell-border: var(--border);
+  --shell-header-bg: var(--bg);
+  --shell-shadow: rgba(0,0,0,0.05);
 
   /* Typography */
   --font:  "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
@@ -41,9 +49,33 @@
   /* Shadows */
   --shadow-sm: 0 1px 2px rgba(0,0,0,0.04);
   --shadow-md: 0 2px 8px rgba(0,0,0,0.06);
+  --shadow-page: 0 4px 24px rgba(0,0,0,0.10), 0 1px 4px rgba(0,0,0,0.06);
 
   color-scheme: light;
   accent-color: var(--mc);
+}
+
+/* ── Dark Theme ────────────────────────── */
+[data-theme="dark"] {
+  --mc:        #60a5fa;
+  --mc-light:  #93bbfd;
+  --mc-muted:  #1e3a5f;
+  --mc-subtle: #0f2744;
+  --subtle:    #1e293b;
+  --text:      #e2e8f0;
+  --text-muted:#94a3b8;
+  --bg:        #1e293b;
+  --border:    #334155;
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.25);
+  --shadow-md: 0 2px 8px rgba(0,0,0,0.35);
+  --shadow-page: 0 4px 24px rgba(0,0,0,0.4), 0 1px 4px rgba(0,0,0,0.3);
+
+  --shell-bg: #0f172a;
+  --shell-header-bg: #1e293b;
+  --shell-border: #334155;
+  --shell-shadow: rgba(0,0,0,0.3);
+
+  color-scheme: dark;
 }
 
 /* ── Reset & Base ──────────────────────── */

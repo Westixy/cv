@@ -2,7 +2,6 @@
   import { t } from "../i18n";
   import { buildCvData } from "../data/cv-data";
   import CvHeader from "./CvHeader.svelte";
-  import CvCitation from "./CvCitation.svelte";
   import CvSection from "./CvSection.svelte";
   import CvTimelineItem from "./CvTimelineItem.svelte";
   import CvTechTags from "./CvTechTags.svelte";
@@ -15,8 +14,6 @@
 
 <article class="cv-document">
   <CvHeader />
-
-  <CvCitation />
 
   <div class="cv-columns">
     <div class="cv-left">
